@@ -1,5 +1,5 @@
 import Head from 'next/head'
-
+import classes from "./Layout.module.css";
 export default function Layout({ title, keywords, description, children }) {
     return (
         <>
@@ -9,7 +9,7 @@ export default function Layout({ title, keywords, description, children }) {
                 <meta name='keywords' content={keywords} />
             </Head>
 
-            <div>{children}</div>
+            <div className={classes.container}>{children}</div>
         </>
     )
 }
