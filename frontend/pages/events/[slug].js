@@ -6,6 +6,9 @@ import Image from 'next/image'
 import {FaPencilAlt, FaTimes} from "react-icons/fa";
 
 export default function EventPage({ evt }) {
+    const deleteEvent = (e) => {
+        console.log('deleting event')
+    }
     return (
         <Layout>
             <div className={classes.event}>
@@ -14,7 +17,7 @@ export default function EventPage({ evt }) {
                             <FaPencilAlt /> Edit Event
 
                     </Link>
-                    <a href='#' className={classes.delete}>
+                    <a href='#' className={classes.delete} onClick={deleteEvent}>
                         <FaTimes /> Delete Event
                     </a>
                 </div>
