@@ -1,13 +1,23 @@
 import Layout from "@/components/Layout";
 import {API_URL} from "@/config";
+import EventItem from "@/components/EventItem";
+import Link from "next/link";
 
-export default function HomePage(props) {
-    console.log(props)
+export default function HomePage({ events }) {
     return (
-        <Layout title="The home page">
-            <h1>Home Page</h1>
-            <p>This is an app to find the latest DJ and other musical events</p>
-            <p>Version: 1.0.0</p>
+        <Layout>
+            <h1>Upcoming Events</h1>
+            {events.length === 0 && <h3>No events to show</h3>}
+
+            {events.map((evt) => (
+                <EventItem key={evt.id} evt={evt} />
+            ))}
+
+            {events.length > 0 && (
+                <Link href='/events' className='btn-secondary'>
+                    View All Events
+                </Link>
+            )}
         </Layout>
     )
 }
