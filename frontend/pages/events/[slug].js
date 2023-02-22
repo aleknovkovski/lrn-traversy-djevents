@@ -9,6 +9,7 @@ export default function EventPage({ evt }) {
     const deleteEvent = (e) => {
         console.log('deleting event')
     }
+    console.log(evt)
     return (
         <Layout>
             <div className={classes.event}>
@@ -28,7 +29,7 @@ export default function EventPage({ evt }) {
                 <h1>{evt.name}</h1>
                 {evt.image && (
                     <div className={classes.image}>
-                        <Image src={evt.image} width={960} height={600} />
+                        <Image src={evt.image.data.attributes.formats.medium.url} width={960} height={600} />
                     </div>
                 )}
 
@@ -48,11 +49,11 @@ export default function EventPage({ evt }) {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch(`${API_URL}/api/events`)
+    const res = await fetch(`${API_URL}/events`)
     const events = await res.json()
 
-    const paths = events.map((evt) => ({
-        params: { slug: evt.slug },
+    const paths = events.data.map((evt) => ({
+        params: { slug: evt.attributes.slug },
     }))
 
     return {
@@ -62,12 +63,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-    const res = await fetch(`${API_URL}/api/events/${slug}`)
+    const res = await fetch(`${API_URL}/events/?slug=${slug}&populate=*`)
     const events = await res.json()
 
     return {
         props: {
-            evt: events[0],
+            evt: events.data[0].attributes,
         },
         revalidate: 1,
     }
