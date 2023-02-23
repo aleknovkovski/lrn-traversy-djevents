@@ -5,6 +5,7 @@ specifiers:
   eslint: 8.34.0
   eslint-config-next: 13.1.6
   next: 13.1.6
+  qs: ^6.11.0
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.7.1
@@ -14,6 +15,7 @@ dependencies:
   eslint: 8.34.0
   eslint-config-next: 13.1.6_eslint@8.34.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+  qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
@@ -1736,6 +1738,13 @@ packages:
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
+    dev: false
+
+  /qs/6.11.0:
+    resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
     dev: false
 
   /queue-microtask/1.2.3:
