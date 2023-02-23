@@ -17,8 +17,19 @@ export default function EventsPage({ events }) {
 }
 
 export async function getServerSideProps({ query: { term } }) {
+    const query = qs.stringify({
+        filters: {
+            $or: [
+                { name: {$contains: term} },
+                { performers: {$contains: term} },
+                { description: {$contains: term} },
+                { venue: {$contains: term} }
+            ],
+        },
+    })
 
-    const res = await fetch(`${API_URL}/events?filters[name][$contains]=${term}&populate=*`)
+
+    const res = await fetch(`${API_URL}/events?${query}&populate=*`)
     const events = await res.json()
 
     return {
