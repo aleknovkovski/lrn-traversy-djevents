@@ -32,21 +32,21 @@ export default function AddEventPage() {
             toast.error('Please fill in all fields')
         }
 
-        const slug = 'test'
         const res = await fetch(`${API_URL}/events`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({data: {...values, slug}}),
+            body: JSON.stringify({data: values}),
         })
 
         if (!res.ok) {
             toast.error('Something Went Wrong')
         } else {
-            const evt = await res.json()
+            const json = await res.json()
+            const evt = json.data.attributes
             console.log(evt)
-            router.push(`/events/${slug}`)
+            router.push(`/events/${evt.slug}`)
         }
 
         console.log(values)
