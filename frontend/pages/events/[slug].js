@@ -51,7 +51,7 @@ export default function EventPage({ evt }) {
 export async function getStaticPaths() {
     const res = await fetch(`${API_URL}/events`)
     const events = await res.json()
-
+    console.log(events)
     const paths = events.data.map((evt) => ({
         params: { slug: evt.attributes.slug },
     }))
@@ -69,7 +69,7 @@ export async function getStaticProps({ params: { slug } }) {
 
     return {
         props: {
-            evt: events.data[0].attributes,
+            evt: {...events.data[0].attributes, id: events.data[0].id},
         },
         revalidate: 1,
     }
