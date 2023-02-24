@@ -29,7 +29,7 @@ export default function EventPage({ evt }) {
                 <h1>{evt.name}</h1>
                 {evt.image.data && (
                     <div className={classes.image}>
-                        <Image src={evt.image.data.attributes.formats.medium.url} width={960} height={600} />
+                        <Image src={evt.image.data.attributes.formats.medium.url} width={960} height={600}  alt={evt.name}/>
                     </div>
                 )}
 
