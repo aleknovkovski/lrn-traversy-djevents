@@ -6,6 +6,7 @@ specifiers:
   '@strapi/provider-upload-cloudinary': ^4.6.1
   '@strapi/strapi': 4.6.1
   better-sqlite3: 8.0.1
+  slugify: ^1.6.5
 
 dependencies:
   '@strapi/plugin-i18n': 4.6.1
@@ -13,6 +14,7 @@ dependencies:
   '@strapi/provider-upload-cloudinary': 4.6.1
   '@strapi/strapi': 4.6.1_better-sqlite3@8.0.1
   better-sqlite3: 8.0.1
+  slugify: 1.6.5
 
 packages:
 
@@ -10071,6 +10073,11 @@ packages:
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
+    dev: false
+
+  /slugify/1.6.5:
+    resolution: {integrity: sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==}
+    engines: {node: '>=8.0.0'}
     dev: false
 
   /smart-buffer/4.2.0:
