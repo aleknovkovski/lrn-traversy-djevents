@@ -46,6 +46,7 @@ export default function AddEventPage() {
         } else {
             const evt = await res.json()
             console.log(evt)
+            router.push(`/events/${slug}`)
         }
 
         console.log(values)
