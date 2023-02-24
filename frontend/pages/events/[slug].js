@@ -27,7 +27,7 @@ export default function EventPage({ evt }) {
           {evt.date} at {evt.time}
         </span>
                 <h1>{evt.name}</h1>
-                {evt.image && (
+                {evt.image.data && (
                     <div className={classes.image}>
                         <Image src={evt.image.data.attributes.formats.medium.url} width={960} height={600} />
                     </div>
@@ -63,7 +63,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-    const res = await fetch(`${API_URL}/events/?slug=${slug}&populate=*`)
+    console.log(slug)
+    const res = await fetch(`${API_URL}/events/?filters[slug]=${slug}&populate=*`)
     const events = await res.json()
 
     return {
