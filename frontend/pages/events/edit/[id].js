@@ -25,7 +25,7 @@ export default function EditEventPage({ evt }) {
     })
 
     const [imagePreview, setImagePreview] = useState(
-        evt.image ? evt.image.data.attributes.formats.thumbnail.url : null
+        evt.image.data ? evt.image.data.attributes.formats.thumbnail.url : null
     )
 
     const [showModal, setShowModal] = useState(false)
