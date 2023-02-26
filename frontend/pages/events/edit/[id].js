@@ -9,6 +9,7 @@ import Layout from '@/components/Layout'
 import { API_URL } from '@/config'
 import styles from '@/styles/Form.module.css'
 import {FaImage} from "react-icons/fa";
+import Modal from "@/components/Modal";
 
 export default function EditEventPage({ evt }) {
     console.log(evt.slug)
@@ -25,6 +26,8 @@ export default function EditEventPage({ evt }) {
     const [imagePreview, setImagePreview] = useState(
         evt.image ? evt.image.data.attributes.formats.thumbnail.url : null
     )
+
+    const [showModal, setShowModal] = useState(false)
 
     const router = useRouter()
 
@@ -156,10 +159,18 @@ export default function EditEventPage({ evt }) {
 
 
             <div>
-                <button className='btn-secondary btn-icon'>
+                <button
+                    onClick={() => {
+                        setShowModal(true);
+                    }}
+                    className='btn-secondary btn-icon'
+                >
                     <FaImage /> Set Image
                 </button>
             </div>
+            <Modal show={showModal} onClose={() => setShowModal(false)}>
+                <p>My modal yay</p>
+            </Modal>
         </Layout>
     )
 }
