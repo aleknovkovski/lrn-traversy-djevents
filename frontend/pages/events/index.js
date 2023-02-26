@@ -15,12 +15,14 @@ export default function EventsPage({ events }) {
     )
 }
 
-export async function getStaticProps() {
-    const res = await fetch(`${API_URL}/events?_sort=date:ASC&populate=*`)
+export async function getServerSideProps({ query: { page = 1 } }) {
+    const PER_PAGE = 2
+
+    // Fetch events
+    const res = await fetch(`${API_URL}/events?populate=*&pagination[page]=${page}&pagination[pageSize]=${PER_PAGE}`)
     const events = await res.json()
 
     return {
-        props: { events: events.data },
-        revalidate: 1,
+        props: { events: events.data}
     }
 }
