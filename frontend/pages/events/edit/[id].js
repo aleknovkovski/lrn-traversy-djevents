@@ -10,6 +10,7 @@ import { API_URL } from '@/config'
 import styles from '@/styles/Form.module.css'
 import {FaImage} from "react-icons/fa";
 import Modal from "@/components/Modal";
+import ImageUpload from "@/components/ImageUpload";
 
 export default function EditEventPage({ evt }) {
     console.log(evt.slug)
@@ -62,6 +63,10 @@ export default function EditEventPage({ evt }) {
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setValues({ ...values, [name]: value })
+    }
+
+    const imageUploaded = () => {
+        console.log('image uploaded')
     }
 
     return (
@@ -169,7 +174,7 @@ export default function EditEventPage({ evt }) {
                 </button>
             </div>
             <Modal show={showModal} onClose={() => setShowModal(false)}>
-                <p>My modal yay</p>
+                <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
             </Modal>
         </Layout>
     )
