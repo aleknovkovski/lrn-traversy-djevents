@@ -65,8 +65,11 @@ export default function EditEventPage({ evt }) {
         setValues({ ...values, [name]: value })
     }
 
-    const imageUploaded = () => {
-        console.log('image uploaded')
+    async function imageUploaded () {
+        const res = await fetch(`${API_URL}/events/${evt.id}?populate=*`)
+        const updatedEvt = await res.json()
+        setImagePreview(updatedEvt.data.attributes.image.data.attributes.formats.thumbnail.url)
+        setShowModal(false)
     }
 
     return (
