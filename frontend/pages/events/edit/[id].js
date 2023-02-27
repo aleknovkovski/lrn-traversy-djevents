@@ -11,8 +11,9 @@ import styles from '@/styles/Form.module.css'
 import {FaImage} from "react-icons/fa";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
+import {parseCookies} from "@/helpers";
 
-export default function EditEventPage({ evt }) {
+export default function EditEventPage({ evt, token }) {
     console.log(evt.slug)
     const [values, setValues] = useState({
         name: evt.name,
@@ -48,11 +49,16 @@ export default function EditEventPage({ evt }) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({data: values}),
         })
 
         if (!res.ok) {
+            if (res.status === 403 || res.status === 401) {
+                toast.error('No token included')
+                return
+            }
             toast.error('Something Went Wrong')
         } else {
             const evt = await res.json()
@@ -183,13 +189,16 @@ export default function EditEventPage({ evt }) {
     )
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
+    const { token } = parseCookies(req)
+
     const res = await fetch(`${API_URL}/events/${id}?populate=*`)
     const evt = await res.json()
     // console.log(evt)
     return {
         props: {
-            evt: {...evt.data.attributes, id}
+            evt: {...evt.data.attributes, id},
+            token
         },
     }
 }
