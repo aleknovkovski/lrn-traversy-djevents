@@ -26,4 +26,12 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
 
     return data;
   },
+  async create(ctx) {
+    const {id} = ctx.state.user; //ctx.state.user contains the current authenticated user
+    console.log(ctx)
+    const response = await super.create(ctx);
+    const updatedResponse = await strapi.entityService
+      .update('api::event.event', response.data.id, {data: {user: id}})
+    return updatedResponse;
+  },
 }));
