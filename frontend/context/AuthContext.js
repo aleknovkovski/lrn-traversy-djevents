@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         console.log('ran checkUserLoggedIn')
         checkUserLoggedIn()
-    }, [])
+    }, [user])
 
     // Register user
     const register = async (user) => {
